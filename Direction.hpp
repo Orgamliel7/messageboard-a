@@ -1,8 +1,10 @@
 #pragma once
 
-namespace ariel {
-	// Defines a direction of a message on the board
-	enum class Direction {
+namespace ariel
+ {
+	// הגדרת כיוון הודעה בלוח המודעות
+	enum class Direction
+	 {
 		Horizontal,
 		Vertical	
 	};
