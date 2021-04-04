@@ -52,10 +52,10 @@ TEST_CASE("Test Vertical direction")
 {
     Board board;
     board.post(1, 1, Direction::Vertical, " GTlosdlus");
-    CHECK(board.read(1, 0, Direction::Horizontal, 2) == string("_G"));
-    CHECK(board.read(2, 0, Direction::Horizontal, 3) == string("_T_"));
-    CHECK(board.read(3, 1, Direction::Horizontal, 3) == string("l__"));
-    CHECK(board.read(4, 0, Direction::Horizontal, 4) == string("_o__"));
+    //CHECK(board.read(1, 0, Direction::Horizontal, 2) == string("_G"));
+   // CHECK(board.read(2, 0, Direction::Horizontal, 3) == string("_T_"));
+   // CHECK(board.read(3, 1, Direction::Horizontal, 3) == string("l__"));
+  //  CHECK(board.read(4, 0, Direction::Horizontal, 4) == string("_o__"));
     CHECK(board.read(4, 0, Direction::Vertical, 2) == string("__"));
    
 }
@@ -97,6 +97,29 @@ TEST_CASE("reading board")
     CHECK(board.read(row,col,Direction::Vertical,KOBE)==string("_____"));
 }
 
+TEST_CASE("Test - general")
+{
+    Board board;
+    board.post(0, 0, Direction::Horizontal, "I");
+    board.post(1, 1, Direction::Vertical, "t");
+    board.post(2, 2, Direction::Horizontal, "'");
+    board.post(3, 3, Direction::Vertical, "s");
+
+    board.post(4, 4, Direction::Horizontal, "work");
+    board.post(5, 4, Direction::Horizontal, "ing");
+    board.post(6,4,Direction::Vertical,"ng");
+
+
+    CHECK(board.read(0, 0, Direction::Horizontal, 2) == string("I_"));
+    CHECK(board.read(1, 0, Direction::Horizontal, 2) == string("_t"));
+    CHECK(board.read(0, 2, Direction::Vertical, 3) == string("__'"));
+    CHECK(board.read(3, 2, Direction::Horizontal, 3) == string("_s_"));
+
+    CHECK(board.read(4, 3, Direction::Horizontal, 6) == string("_work_"));
+    CHECK(board.read(3, 4, Direction::Vertical, 3) == string("_wi"));
+    CHECK(board.read(3, 5, Direction::Vertical, 4) == string("_on_"));
+    CHECK(board.read(4, 4, Direction::Vertical, 5) == string("wing_"));
+}
 // TEST_CASE("adding message to empty board horizontal") {
 //     Board board;
 //     string str = gen_random(WORD_LEN_5);
